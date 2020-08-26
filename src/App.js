@@ -1,5 +1,6 @@
 import React from "react";
 import TodoList from "./components/Todo/TodoList";
+import './App.scss'
 
 function App() {
   const todoData = [

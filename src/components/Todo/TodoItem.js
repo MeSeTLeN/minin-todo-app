@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import './TodoItem.scss'
 
 function TodoItem({ todo, index }) {
   return (

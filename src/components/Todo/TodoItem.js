@@ -7,9 +7,9 @@ function TodoItem({ todo, index }) {
     <li>
       <span>
         <input type="checkbox" />
-        <strong>{index + 1}</strong> {todo.title}{" "}
+        <strong>{index + 1}</strong> &nbsp; {todo.title}{" "}
       </span>
-      <button>&times;</button>
+      <button className='rm' >&times;</button>
     </li>
   );
 }

@@ -9,7 +9,7 @@ function App() {
   ];
   return (
     <div className="App">
-      <TodoList />
+      <TodoList todoData={todoData}  />
       <header className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.

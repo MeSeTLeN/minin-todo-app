@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/Todo/TodoList";
 import "./App.scss";
+import Context from "./context";
 
 function App() {
   const [todoData, setTodoData] = React.useState([
@@ -8,6 +9,7 @@ function App() {
     { id: 2, completed: true, title: "Buy milk" },
     { id: 3, completed: false, title: "Buy cake" },
   ]);
+
   function toggleTodo(id) {
     setTodoData(
       todoData.map((todo) => {
@@ -18,10 +20,21 @@ function App() {
       })
     );
   }
+
+  function removeTodo(id) {
+    setTodoData(todoData.filter((todo) => todo.id !== id));
+  }
+
   return (
-    <div className="App">
-      <TodoList todoData={todoData} onToggle={toggleTodo} />
-    </div>
+    <Context.Provider value={{ removeTodo }}>
+      <div className="App">
+        {todoData.length ? (
+          <TodoList todoData={todoData} onToggle={toggleTodo} />
+        ) : (
+          <div>'No Todos Yet!'</div>
+        )}
+      </div>
+    </Context.Provider>
   );
 }
 

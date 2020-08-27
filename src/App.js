@@ -6,12 +6,16 @@ import AddTodo from "./components/Todo/AddTodo";
 
 function App() {
   const [todoData, setTodoData] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
       .then((response) => response.json())
       .then((todoData) => {
-        setTodoData(todoData);
+        setTimeout(() => {
+          setTodoData(todoData);
+          setLoading(false);
+        }, 2000);
       });
   }, []);
 
@@ -46,9 +50,10 @@ function App() {
     <Context.Provider value={{ removeTodo }}>
       <div className="App">
         <AddTodo onCreate={addTodo} />
+        {loading && <div>Loading...</div>}
         {todoData.length ? (
           <TodoList todoData={todoData} onToggle={toggleTodo} />
-        ) : (
+        ) : loading ? null : (
           <div>No Todos Yet!</div>
         )}
       </div>

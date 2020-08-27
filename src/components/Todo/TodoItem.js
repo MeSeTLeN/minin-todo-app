@@ -3,11 +3,14 @@ import PropTypes from "prop-types";
 import './TodoItem.scss'
 
 function TodoItem({ todo, index, onChange }) {
-  console.log(todo)
-
+let classCompleted = ''
+console.log(todo.completed)
+if(todo.completed){
+  classCompleted += ' done'
+}
   return (
     <li>
-      <span>
+      <span className={classCompleted} >
         <input type="checkbox" onChange={()=> onChange(todo.id)} />
         <strong>{index + 1}</strong> &nbsp; {todo.title}{" "}
       </span>

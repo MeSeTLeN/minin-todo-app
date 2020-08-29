@@ -9,11 +9,11 @@ const styles = {
   },
 };
 
-function TodoList(props) {
+function TodoList({ todos, onToggle }) {
   return (
     <ul style={styles.ul}>
-      {props.todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+      {todos.map((todo, index) => (
+        <TodoItem key={todo.id} todo={todo} index={index} onChange={onToggle} />
       ))}
     </ul>
   );

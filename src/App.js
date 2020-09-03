@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoList from "./Todo/TodoList";
 
 function App() {
-  const todos = [
+  const [todos, setTodos] = useState([
     { id: 1, completed: false, title: "Shower" },
     { id: 2, completed: true, title: "Coffee" },
     { id: 3, completed: false, title: "Work" },
-  ];
+  ]);
 
-  function toggleTodo(id){
-    console.log(id)
+  function toggleTodo(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    );
   }
 
   return (

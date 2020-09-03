@@ -25,10 +25,22 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  function addTodo(title) {
+    setTodos(
+      todos.concat([
+        {
+          title,
+          id: Date.now(),
+          completed: false,
+        },
+      ])
+    );
+  }
+
   return (
     <Context.Provider value={{ removeTodo }}>
       <div className="App">
-        <AddTodo />
+        <AddTodo onCreate={addTodo} />
         {todos.length ? (
           <TodoList todos={todos} onToggle={toggleTodo} />
         ) : (

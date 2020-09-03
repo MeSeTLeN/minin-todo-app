@@ -3,7 +3,12 @@ import TodoItem from "./TodoItem";
 
 const styles={
     ul:{
-        listStyle:'none'
+        listStyle:'none',
+        color: '#fff',
+        justifyContent:'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     }
 }
 

@@ -16,7 +16,7 @@ function TodoList(props) {
   return (
     <ul style={styles.ul}>
       {props.todos.map((todo) => (
-        <TodoItem />
+        <TodoItem todo={todo} />
       ))}
     </ul>
   );

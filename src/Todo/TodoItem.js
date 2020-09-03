@@ -1,9 +1,9 @@
 import React from "react";
 
-function TodoItem() {
+function TodoItem({todo}) {
     
     return(
-        <li>1</li>
+        <li>{todo.title}</li>
     )
 }
 

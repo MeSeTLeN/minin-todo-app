@@ -5,7 +5,6 @@ const styles = {
   ul: {
     listStyle: "none",
     color: "#fff",
-    justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -15,8 +14,8 @@ const styles = {
 function TodoList(props) {
   return (
     <ul style={styles.ul}>
-      {props.todos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} />
+      {props.todos.map((todo, i) => (
+        <TodoItem todo={todo} key={todo.id} index={i} />
       ))}
     </ul>
   );

@@ -21,8 +21,6 @@ function TodoItem({ todo, index, onChange }) {
         <strong>{index + 1}</strong>
         {todo.title}
       </span>
-      {/* <button onClick={removeTodo.bind(null, todo.id)}>&times;</button>
-      or */}
       <button onClick={() => removeTodo(todo.id)}>&times;</button>
     </li>
   );

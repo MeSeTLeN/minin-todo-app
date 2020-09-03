@@ -25,9 +25,13 @@ function App() {
   }
 
   return (
-    <Context.Provider value={{removeTodo}}>
+    <Context.Provider value={{ removeTodo }}>
       <div className="App">
-        <TodoList todos={todos} onToggle={toggleTodo} />
+        {todos.length ? (
+          <TodoList todos={todos} onToggle={toggleTodo} />
+        ) : (
+          "No todos yet!"
+        )}
       </div>
     </Context.Provider>
   );

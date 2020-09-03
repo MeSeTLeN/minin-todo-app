@@ -1,10 +1,10 @@
 import React from "react";
 
-function TodoItem({ todo, index }) {
+function TodoItem({ todo, index, onChange }) {
   return (
     <li>
       <span>
-        <input type="checkbox" />
+        <input type="checkbox" onChange={() => onChange(todo.id)} />
         <strong>{index + 1}</strong>
         {todo.title}
       </span>

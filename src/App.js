@@ -7,9 +7,14 @@ function App() {
     { id: 2, completed: true, title: "Coffee" },
     { id: 3, completed: false, title: "Work" },
   ];
+
+  function toggleTodo(id){
+    console.log(id)
+  }
+
   return (
     <div className="App">
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggle={toggleTodo} />
     </div>
   );
 }

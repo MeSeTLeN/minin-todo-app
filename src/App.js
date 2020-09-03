@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./context";
+import AddTodo from "./Todo/AddTodo";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -27,6 +28,7 @@ function App() {
   return (
     <Context.Provider value={{ removeTodo }}>
       <div className="App">
+        <AddTodo />
         {todos.length ? (
           <TodoList todos={todos} onToggle={toggleTodo} />
         ) : (

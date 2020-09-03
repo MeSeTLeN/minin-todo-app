@@ -1,9 +1,9 @@
 import React from "react";
 
-function TodoItem() {
+function TodoItem({todo, index}) {
     
     return(
-        <li>1</li>
+        <li><strong>{index+1}</strong>{todo.title}</li>
     )
 }
 

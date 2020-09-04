@@ -3,7 +3,14 @@ import TodoList from "./Todo/TodoList";
 import Context from "./context";
 import Loader from "./Todo/Loader";
 
-const AddTodo = lazy(() => import("./Todo/AddTodo"));
+const AddTodo = lazy(
+  () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(import("./Todo/AddTodo"));
+      }, 3000);
+    })
+);
 
 function App() {
   const [todos, setTodos] = useState([]);

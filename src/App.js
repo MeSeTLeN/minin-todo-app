@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy } from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./context";
 import Loader from "./Todo/Loader";
+import Modal from "./Modal/Modal";
 
 const AddTodo = lazy(
   () =>
@@ -58,6 +59,7 @@ function App() {
   return (
     <Context.Provider value={{ removeTodo }}>
       <div className="App">
+        <Modal />
         <React.Suspense fallback={<Loader />}>
           <AddTodo onCreate={addTodo} />
         </React.Suspense>

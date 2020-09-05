@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import "./TodoItem.css";
 import context from "../context";
 
@@ -15,7 +16,6 @@ function TodoItem({ todo, index, onChange }) {
 
     // done-li class not overriding li bg cause css override from top to down .1 then .2 class 2 will override 1
     liClasses.push("done-li");
-    console.log(liClasses)
   }
 
   return (
@@ -36,5 +36,10 @@ function TodoItem({ todo, index, onChange }) {
     </li>
   );
 }
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+  index: PropTypes.number,
+};
 
 export default TodoItem;

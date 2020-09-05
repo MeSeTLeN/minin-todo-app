@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddTodo.css";
 
 // custom hook for input
 function useInputValue(defaultValue = "") {
@@ -9,6 +10,8 @@ function useInputValue(defaultValue = "") {
     bind: {
       value,
       onChange: (event) => setValue(event.target.value),
+      placeholder: "Write your todo here",
+      className: "addTodo-input",
     },
     value: () => value,
     clear: () => setValue(""),
@@ -32,10 +35,12 @@ function AddTodo({ onCreate }) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className="addTodo">
       {/* using custom hook ...input.bind */}
       <input {...input.bind} />
-      <button type="submit">Add Todo</button>
+      <button type="submit" className="addTodo-btn">
+        Add Todo
+      </button>
     </form>
   );
 }

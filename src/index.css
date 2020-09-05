@@ -5,16 +5,51 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .App{
+  padding: 5%;
   border-radius: 20px;
-  width: 600px;
-  margin: 0 auto;
   background: #282c34;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.noTodo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  border-radius: 15px;
+  font-size: 14pt;
+  padding: 25px 0;
+  transition-duration: 0.3s;
+  color: #000;
+  background: #fff;
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

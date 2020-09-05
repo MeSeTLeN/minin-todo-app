@@ -7,15 +7,20 @@ function TodoItem({ todo, index, onChange }) {
   const { removeTodo } = useContext(context);
 
   // class container
-  const classes = [];
+  const spanClasses = [];
+  const liClasses = ["li-item"];
 
   if (todo.completed) {
-    classes.push("done");
+    spanClasses.push("done");
+
+    // done-li class not overriding li bg cause css override from top to down .1 then .2 class 2 will override 1
+    liClasses.push("done-li");
+    console.log(liClasses)
   }
 
   return (
-    <li className={classes.join(" ")}>
-      <span>
+    <li className={liClasses.join(" ")}>
+      <span className={spanClasses.join(" ")}>
         <input
           type="checkbox"
           checked={todo.completed}
@@ -25,7 +30,9 @@ function TodoItem({ todo, index, onChange }) {
       </span>
 
       {/* same onClick={removeTodo.bind(null, todo.id)} */}
-      <button onClick={() => removeTodo(todo.id)}>&times;</button>
+      <button className="remove-btn" onClick={() => removeTodo(todo.id)}>
+        &times;
+      </button>
     </li>
   );
 }

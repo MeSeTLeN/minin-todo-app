@@ -8,7 +8,6 @@ const styles = {
     justifyContent: "center",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
   },
 };
 

@@ -65,6 +65,8 @@ function App() {
     // context.Provider help avoid using too many props
     <context.Provider value={{ removeTodo }}>
       <div className="App">
+        <h1>Todo App</h1>
+
         <Modal />
 
         {/* Suspense for lazy loading */}
@@ -92,7 +94,7 @@ function App() {
             </div>
           </Fragment>
         ) : (
-          "No todo Yet!"
+          <div className="noTodo">"No todo Yet!"</div>
         )}
       </div>
     </context.Provider>

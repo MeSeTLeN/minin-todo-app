@@ -16,13 +16,18 @@ export default class Modal extends Component {
     return (
       // Fragment same as div
       <Fragment>
-        <button onClick={() => this.openModal()}>Open modal!</button>
+        <button onClick={() => this.openModal()} className="modal-btn">
+          Open modal window!
+        </button>
         {this.state.isOpen && (
           <div className="modal">
             <div className="modal-body">
               <h1>Modal</h1>
               <p>Modal text goes here</p>
-              <button onClick={() => this.setState({ isOpen: false })}>
+              <button
+                onClick={() => this.setState({ isOpen: false })}
+                className="modal-btn"
+              >
                 Close modal
               </button>
             </div>

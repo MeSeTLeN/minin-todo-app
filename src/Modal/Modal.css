@@ -1,5 +1,6 @@
 .modal{
     position: fixed;
+    z-index: 1;
     top: 0;
     bottom: 0;
     right: 0;
@@ -8,6 +9,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s;
 }
 
 .modal-body{
@@ -19,4 +21,24 @@
     align-items: center;
     flex-direction: column;
     background: #282c34;
+}
+
+.modal-btn{
+    margin: 5px 0;
+    border-radius: 15px;
+    padding: 11px;
+    color: #000;
+    background: #fff;
+    font-weight: bold;
+	border:none;
+    cursor:pointer;
+    font-size: 14pt;
+    transition-duration: 0.5s;
+    outline: none;
+    animation: fadeIn 2s;
+}
+
+.modal-btn:hover{
+    font-size: 12pt;
+    background: rgba(255, 255, 255, 0.76);
 }

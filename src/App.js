@@ -1,9 +1,11 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, Suspense, Fragment } from "react";
 import TodoList from "./Todo/TodoList";
-import Context from "./context";
-import Loader from "./Todo/Loader";
+import context from "./context";
+import Loader from "./Loader/Loader";
 import Modal from "./Modal/Modal";
 
+// here goes lazy loading component check out chrome devTool
+// promise setTimeout simulate internet speed
 const AddTodo = lazy(
   () =>
     new Promise((resolve) => {
@@ -17,18 +19,19 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect setTimeout simulate data loading from server
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-      .then((response) => response.json())
-      .then((todos) =>
-        setTimeout(() => {
+    setTimeout(() => {
+      fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+        .then((response) => response.json())
+        .then((todos) => {
           setTodos(todos);
           setLoading(false);
-        }, 2000)
-      );
+        });
+    }, 2000);
   }, []);
-  // setTimeout to simulate server delay
 
+  // TodoItem input checkbox done(true) or no(false)
   function toggleTodo(id) {
     setTodos(
       todos.map((todo) => {
@@ -40,37 +43,59 @@ function App() {
     );
   }
 
+  // TodoItem remove btn
   function removeTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  // AddTodo btn
   function addTodo(title) {
     setTodos(
       todos.concat([
         {
-          title,
           id: Date.now(),
           completed: false,
+          title,
         },
       ])
     );
   }
 
   return (
-    <Context.Provider value={{ removeTodo }}>
+    // context.Provider help avoid using too many props
+    <context.Provider value={{ removeTodo }}>
       <div className="App">
         <Modal />
-        <React.Suspense fallback={<Loader />}>
+
+        {/* Suspense for lazy loading */}
+        <Suspense
+          fallback={
+            <Fragment>
+              <Loader />
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                Lazy loading(timeout 3s) component AddTodo...
+              </div>
+            </Fragment>
+          }
+        >
           <AddTodo onCreate={addTodo} />
-        </React.Suspense>
-        {loading && <Loader />}
+        </Suspense>
+
         {todos.length ? (
           <TodoList todos={todos} onToggle={toggleTodo} />
-        ) : loading ? null : (
-          "No todos yet!"
+        ) : loading ? (
+          <Fragment>
+            <Loader />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              Loading data from server...
+            </div>
+          </Fragment>
+        ) : (
+          "No todo Yet!"
         )}
       </div>
-    </Context.Provider>
+    </context.Provider>
   );
 }
 

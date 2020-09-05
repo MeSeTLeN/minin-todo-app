@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import "./TodoItem.css";
-import Context from "../context";
+import context from "../context";
 
 function TodoItem({ todo, index, onChange }) {
-  const { removeTodo } = useContext(Context);
+  // using func removeTodo from App.js from context
+  const { removeTodo } = useContext(context);
+
+  // class container
   const classes = [];
 
   if (todo.completed) {
@@ -15,12 +18,13 @@ function TodoItem({ todo, index, onChange }) {
       <span>
         <input
           type="checkbox"
-          onChange={() => onChange(todo.id)}
           checked={todo.completed}
-        />
-        <strong>{index + 1}</strong>
-        {todo.title}
+          onChange={() => onChange(todo.id)}
+        />{" "}
+        {index + 1} {todo.title}{" "}
       </span>
+
+      {/* same onClick={removeTodo.bind(null, todo.id)} */}
       <button onClick={() => removeTodo(todo.id)}>&times;</button>
     </li>
   );

@@ -5,6 +5,7 @@ const styles = {
   ul: {
     listStyle: "none",
     color: "#fff",
+    justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

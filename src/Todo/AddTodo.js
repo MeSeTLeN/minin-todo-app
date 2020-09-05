@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AddTodo.css";
+import PropTypes from "prop-types";
 
 // custom hook for input
 function useInputValue(defaultValue = "") {
@@ -44,5 +45,9 @@ function AddTodo({ onCreate }) {
     </form>
   );
 }
+
+AddTodo.propTypes = {
+  onCreate: PropTypes.func.isRequired,
+};
 
 export default AddTodo;

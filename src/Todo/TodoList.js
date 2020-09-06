@@ -1,13 +1,23 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-function TodoList() {
-    
+const styles = {
+  ul: {
+    listStyle: "none",
+    color: "#fff",
+    justifyContent: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+};
+
+function TodoList(props) {
   return (
-    <ul>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+    <ul style={styles.ul}>
+      {props.todos.map((todo, i) => (
+        <TodoItem todo={todo} key={todo.id} index={i} />
+      ))}
     </ul>
   );
 }

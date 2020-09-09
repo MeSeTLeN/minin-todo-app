@@ -24,14 +24,16 @@ function App() {
 
   // useEffect setTimeout simulate data loading from server
   useEffect(() => {
-    setTimeout(() => {
-      fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-        .then((response) => response.json())
-        .then((todos) => {
-          setTodos(todos);
-          setLoading(false);
-        });
-    }, 2000);
+    // setTimeout(() => {
+    //   fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+    //     .then((response) => response.json())
+    //     .then((todos) => {
+    //       setTodos(todos);
+    //           setLoading(false);
+    //     });
+    // }, 2000);
+    setLoading(false);
+    getLocalTodos();
   }, []);
 
   // onChange [filterStatus, todos] useEffect return filteredTodos
@@ -55,6 +57,11 @@ function App() {
 
     filterTodos();
   }, [filterStatus, todos]);
+
+  // onChange [todos] Local save
+  useEffect(() => {
+    saveLocalTodos();
+  }, [todos]);
 
   // TodoItem input checkbox done(true) or no(false)
   function toggleTodo(id) {
@@ -89,6 +96,20 @@ function App() {
   // filter set value
   function selectHandler(e) {
     setFilterStatus(e.target.value);
+  }
+
+  // Local save todos
+  function saveLocalTodos() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+  // Local load todos
+  function getLocalTodos() {
+    if (localStorage.getItem("todos") === null) {
+      setTodos([]);
+    } else {
+      setTodos(JSON.parse(localStorage.getItem("todos")));
+    }
   }
 
   return (

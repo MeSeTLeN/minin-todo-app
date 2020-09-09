@@ -15,7 +15,7 @@ const styles = {
 function TodoList(props) {
   return (
     <ul style={styles.ul}>
-      {props.todos.map((todo, i) => (
+      {props.filteredTodos.map((todo, i) => (
         <TodoItem
           todo={todo}
           key={todo.id}
@@ -28,7 +28,7 @@ function TodoList(props) {
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredTodos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TodoList;

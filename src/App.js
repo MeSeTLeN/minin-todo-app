@@ -3,6 +3,7 @@ import TodoList from "./Todo/TodoList";
 import context from "./context";
 import Loader from "./Loader/Loader";
 import Modal from "./Modal/Modal";
+import Filter from "./Filter/Filter";
 
 // here goes lazy loading component check out chrome devTool
 // promise setTimeout simulate internet speed
@@ -18,6 +19,9 @@ const AddTodo = lazy(
 function App() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
 
   // useEffect setTimeout simulate data loading from server
   useEffect(() => {
@@ -30,6 +34,27 @@ function App() {
         });
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    function filterTodos() {
+      switch (filterStatus) {
+        case "completed":
+          setFilteredTodos(todos.filter((todo) => todo.completed === true));
+
+          break;
+        case "uncompleted":
+          setFilteredTodos(todos.filter((todo) => todo.completed === false));
+
+          break;
+
+        default:
+          setFilteredTodos(todos);
+          break;
+      }
+    }
+
+    filterTodos();
+  }, [filterStatus, todos]);
 
   // TodoItem input checkbox done(true) or no(false)
   function toggleTodo(id) {
@@ -61,6 +86,11 @@ function App() {
     );
   }
 
+  function selectHandler(e) {
+    setFilterStatus(e.target.value);
+  }
+
+
   return (
     // context.Provider help avoid using too many props
     <context.Provider value={{ removeTodo }}>
@@ -84,8 +114,10 @@ function App() {
           <AddTodo onCreate={addTodo} />
         </Suspense>
 
+        <Filter selectHandler={selectHandler} />
+
         {todos.length ? (
-          <TodoList todos={todos} onToggle={toggleTodo} />
+          <TodoList filteredTodos={filteredTodos} onToggle={toggleTodo} />
         ) : loading ? (
           <Fragment>
             <Loader />

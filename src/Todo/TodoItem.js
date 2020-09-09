@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import "./TodoItem.css";
 import context from "../context";
 
-function TodoItem({ todo, index, onChange }) {
+function TodoItem({ todo, index }) {
   // using func removeTodo from App.js from context
-  const { removeTodo } = useContext(context);
+  const { removeTodo, toggleTodo } = useContext(context);
 
   // class container
   const spanClasses = [];
@@ -24,7 +24,7 @@ function TodoItem({ todo, index, onChange }) {
         <input
           type="checkbox"
           checked={todo.completed}
-          onChange={() => onChange(todo.id)}
+          onChange={() => toggleTodo(todo.id)}
         />{" "}
         {index + 1} {todo.title}{" "}
       </span>

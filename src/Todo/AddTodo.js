@@ -4,18 +4,18 @@ import PropTypes from "prop-types";
 
 // custom hook for input
 function useInputValue(defaultValue = "") {
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
-  // bind value means value={value} if put it in input
+  // bind value means value={inputValue} if put it in input
   return {
     bind: {
-      value,
-      onChange: (event) => setValue(event.target.value),
+      value: inputValue,
+      onChange: (event) => setInputValue(event.target.value),
       placeholder: "Write your todo here",
       className: "addTodo-input",
     },
-    value: () => value,
-    clear: () => setValue(""),
+    value: () => inputValue,
+    clear: () => setInputValue(""),
   };
 }
 

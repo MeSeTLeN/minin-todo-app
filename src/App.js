@@ -22,7 +22,6 @@ function App() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-
   // useEffect setTimeout simulate data loading from server
   useEffect(() => {
     setTimeout(() => {
@@ -35,6 +34,7 @@ function App() {
     }, 2000);
   }, []);
 
+  // onChange [filterStatus, todos] useEffect return filteredTodos
   useEffect(() => {
     function filterTodos() {
       switch (filterStatus) {
@@ -86,14 +86,14 @@ function App() {
     );
   }
 
+  // filter set value
   function selectHandler(e) {
     setFilterStatus(e.target.value);
   }
 
-
   return (
     // context.Provider help avoid using too many props
-    <context.Provider value={{ removeTodo }}>
+    <context.Provider value={{ removeTodo, toggleTodo }}>
       <div className="App">
         <h1>Todo App</h1>
 

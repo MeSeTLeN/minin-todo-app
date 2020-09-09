@@ -12,16 +12,11 @@ const styles = {
   },
 };
 
-function TodoList(props) {
+function TodoList({ filteredTodos }) {
   return (
     <ul style={styles.ul}>
-      {props.filteredTodos.map((todo, i) => (
-        <TodoItem
-          todo={todo}
-          key={todo.id}
-          index={i}
-          onChange={props.onToggle}
-        />
+      {filteredTodos.map((todo, i) => (
+        <TodoItem todo={todo} key={todo.id} index={i} />
       ))}
     </ul>
   );

@@ -1,13 +1,12 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-function TodoList() {
-    
+function TodoList({ filteredTodos }) {
   return (
-    <ul>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+    <ul style={{listStyle:'none'}}>
+      {filteredTodos.map((todo, index) => (
+        <TodoItem todo={todo} index={index} key={todo.id} />
+      ))}
     </ul>
   );
 }

@@ -29,10 +29,14 @@ function App() {
     <Context.Provider value={{ removeTodo: removeTodo }}>
       <div className="wrapper">
         <h1>React Tutorial</h1>
-        <TodoList
-          todos={todoList}
-          onChangeCompletedTodoListMethod={onChangeCompletedAppMethod}
-        />
+        {todoList.length ? (
+          <TodoList
+            todos={todoList}
+            onChangeCompletedTodoListMethod={onChangeCompletedAppMethod}
+          />
+        ) : (
+          <p>No Todos</p>
+        )}
       </div>
     </Context.Provider>
   );

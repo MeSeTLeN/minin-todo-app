@@ -14,7 +14,14 @@ function TodoList(props) {
   return (
     <ul style={styles.ul}>
       {props.todos.map((todo, i) => {
-        return <TodoItem todo={todo} key={todo.id} i={i} />;
+        return (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            i={i}
+            onChangeCompletedTodoItemFun={props.onChangeCompletedTodoListMethod}
+          />
+        );
       })}
     </ul>
   );
@@ -22,6 +29,7 @@ function TodoList(props) {
 
 TodoList.protoTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onChangeCompletedTodoListMethod: PropTypes.func.isRequired,
 };
 
 export default TodoList;

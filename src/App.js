@@ -21,7 +21,7 @@ function App() {
       );
   }, []);
 
-  function onChangeCompletedAppMethod(id, completed) {
+  function onChangeCompletedAppMethod(id) {
     setTodoList(
       todoList.map((todo) => {
         if (todo.id === id) {
@@ -30,7 +30,6 @@ function App() {
         return todo;
       })
     );
-    console.log("todo id", id, completed);
   }
 
   function removeTodo(id) {

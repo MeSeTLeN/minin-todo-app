@@ -41,10 +41,14 @@ function App() {
     <Context.Provider value={{ removeTodo: removeTodo }}>
       <div className="wrapper">
         <AddTodo onCreateMethod={addTodoFunc} />
-        <TodoList
-          todos={todoList}
-          changeCompletedMethodList={changeCompletedFunc}
-        />
+        {todoList.length ? (
+          <TodoList
+            todos={todoList}
+            changeCompletedMethodList={changeCompletedFunc}
+          />
+        ) : (
+          <p>No todos!</p>
+        )}
       </div>
     </Context.Provider>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddTodo from "./Components/AddTodo";
 import TodoList from "./Components/TodoList";
 import Context from "./context";
 
@@ -24,9 +25,22 @@ function App() {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   }
 
+  function addTodoFunc(title) {
+    setTodoList(
+      todoList.concat([
+        {
+          title,
+          id: Date.now(),
+          completed: false,
+        },
+      ])
+    );
+  }
+
   return (
     <Context.Provider value={{ removeTodo: removeTodo }}>
       <div className="wrapper">
+        <AddTodo onCreateMethod={addTodoFunc} />
         <TodoList
           todos={todoList}
           changeCompletedMethodList={changeCompletedFunc}

@@ -17,3 +17,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+
+.done{
+  text-decoration: line-through;
+}

@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
-export default function TodoItem(props) {
-    return (
-        <li>
-            {props.todo.title}
-        </li>
-    )
+function TodoItem(props) {
+  const classes = [];
+  if (props.todo.completed) {
+    classes.push("done");
+  }
+
+  return (
+    <li className={classes.join(" ")}>
+      {props.todo.title}
+    </li>
+  );
 }
+
+export default TodoItem;

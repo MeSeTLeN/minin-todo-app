@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import Context from "../context";
 
 function TodoItem(props) {
   const classes = [];
   if (props.todo.completed) {
     classes.push("done");
   }
+
+  const { removeTodo } = useContext(Context);
 
   return (
     <li className={classes.join(" ")}>
@@ -15,6 +18,7 @@ function TodoItem(props) {
         onChange={() => props.changeCompletedMethodItem(props.todo.id)}
       />
       {props.i + 1 + " " + props.todo.title}
+      <button onClick={() => removeTodo(props.todo.id)}>&times;</button>
     </li>
   );
 }

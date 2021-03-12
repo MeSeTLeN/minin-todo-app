@@ -12,7 +12,14 @@ function TodoList(props) {
   return (
     <ul style={styles.ul}>
       {props.todos.map((todo, i) => {
-        return <TodoItem todo={todo} i={i} />;
+        return (
+          <TodoItem
+            todo={todo}
+            i={i}
+            key={todo.id}
+            changeCompletedMethodItem={props.changeCompletedMethodList}
+          />
+        );
       })}
     </ul>
   );

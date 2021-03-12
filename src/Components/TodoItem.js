@@ -9,6 +9,11 @@ function TodoItem(props) {
 
   return (
     <li className={classes.join(" ")}>
+      <input
+        checked={props.todo.completed}
+        type="checkbox"
+        onChange={() => props.changeCompletedMethodItem(props.todo.id)}
+      />
       {props.i + 1 + " " + props.todo.title}
     </li>
   );

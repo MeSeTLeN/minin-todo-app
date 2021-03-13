@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
+import Modal from "./Components/Modal";
 import TodoList from "./Components/TodoList";
 import Context from "./context";
 import Loader from "./Loader";
@@ -48,6 +49,7 @@ function App() {
   return (
     <Context.Provider value={{ removeTodo: removeTodo }}>
       <div className="wrapper">
+        <Modal />
         <Suspense fallback={<Loader />}>
           <AddTodo onCreateMethod={addTodoFunc} />
         </Suspense>

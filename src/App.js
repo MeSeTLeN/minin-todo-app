@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MyContext from "./context";
 import TodoList from "./Todo/TodoList";
 
 function App() {
@@ -21,14 +22,20 @@ function App() {
     );
   }
 
+  function removeTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
-    <div className="App">
-      {todos.length ? (
-        <TodoList todos={todos} onToggleTodo={todoCompleted} />
-      ) : (
-        <p>No todos</p>
-      )}
-    </div>
+    <MyContext.Provider value={{ removeTodo }}>
+      <div className="App">
+        {todos.length ? (
+          <TodoList todos={todos} onToggleTodo={todoCompleted} />
+        ) : (
+          <p>No todos</p>
+        )}
+      </div>
+    </MyContext.Provider>
   );
 }
 

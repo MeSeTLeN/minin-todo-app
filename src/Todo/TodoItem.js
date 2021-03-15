@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function TodoItem({ todo, i, onChangeTodo }) {
+function TodoItem({ todo, i, onChangeTodo }) {
   return (
     <li>
       <input
@@ -12,3 +13,9 @@ export default function TodoItem({ todo, i, onChangeTodo }) {
     </li>
   );
 }
+
+TodoItem.propTypes = {
+  onChangeTodo: PropTypes.func.isRequired,
+};
+
+export default TodoItem;

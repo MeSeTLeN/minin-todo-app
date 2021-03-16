@@ -12,6 +12,10 @@ export default function TodoItem({ todo, i, todos, setTodos }) {
     );
   }
 
+  function deleteTodoHandler(params) {
+    setTodos(todos.filter((el) => el.id !== todo.id));
+  }
+
   return (
     <li>
       <input
@@ -20,7 +24,7 @@ export default function TodoItem({ todo, i, todos, setTodos }) {
         checked={todo.completed}
       />
       {i + 1 + " " + todo.title}
-      <button>&times;</button>
+      <button onClick={deleteTodoHandler}>&times;</button>
     </li>
   );
 }

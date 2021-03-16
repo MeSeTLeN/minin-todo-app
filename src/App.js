@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Context from "./context";
+import AddTodo from "./Todo/AddTodo";
 import TodoList from "./Todo/TodoList";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   return (
     <Context.Provider>
       <div className="App">
+        <AddTodo todos={todos} setTodos={setTodos} />
         <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </Context.Provider>

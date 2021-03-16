@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import Context from "./context";
 import Loader from "./Loader";
+import Modal from "./Modal/Modal";
 import TodoList from "./Todo/TodoList";
 
 const AddTodo = lazy(() => import("./Todo/AddTodo"));
@@ -21,6 +22,8 @@ function App() {
   return (
     <Context.Provider>
       <div className="App">
+        <Modal />
+
         <Suspense fallback={<Loader />}>
           <AddTodo todos={todos} setTodos={setTodos} />
         </Suspense>

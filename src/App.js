@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TodoList from './Todo/TodoList'
 import MyContext from './context'
+import AddTodo from './Todo/AddTodo'
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -26,9 +27,21 @@ function App() {
     setTodos(todos.filter((el) => el.id !== id))
   }
 
+  function addTodo(title) {
+    setTodos([
+      ...todos,
+      {
+        id: Date.now(),
+        title,
+        completed: false,
+      },
+    ])
+  }
+
   return (
-    <MyContext.Provider value={{ onToggle, deleteTodo }}>
+    <MyContext.Provider value={{ onToggle, deleteTodo, addTodo }}>
       <div className='App'>
+        <AddTodo />
         <TodoList todos={todos} />
       </div>
     </MyContext.Provider>

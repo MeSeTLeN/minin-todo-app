@@ -22,8 +22,12 @@ function App() {
     )
   }
 
+  function deleteTodo(id) {
+    setTodos(todos.filter((el) => el.id !== id))
+  }
+
   return (
-    <MyContext.Provider value={{ onToggle }}>
+    <MyContext.Provider value={{ onToggle, deleteTodo }}>
       <div className='App'>
         <TodoList todos={todos} />
       </div>

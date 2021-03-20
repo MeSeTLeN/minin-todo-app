@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import MyContext from '../context'
 
 export default function TodoItem({ el, i }) {
-  const { onToggle } = useContext(MyContext)
+  const { onToggle, deleteTodo } = useContext(MyContext)
 
   return (
     <li>
@@ -12,7 +12,7 @@ export default function TodoItem({ el, i }) {
         checked={el.completed}
       />
       {i + 1 + ' ' + el.title}
-      <button>&times;</button>
+      <button onClick={() => deleteTodo(el.id)}>&times;</button>
     </li>
   )
 }

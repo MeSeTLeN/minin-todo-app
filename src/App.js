@@ -2,6 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from 'react'
 import TodoList from './Todo/TodoList'
 import MyContext from './context'
 import Loader from './Loader'
+import Modal from './Modal/Modal'
 
 const AddTodo = lazy(() => import('./Todo/AddTodo.js'))
 
@@ -50,6 +51,7 @@ function App() {
         <Suspense fallback={<Loader />}>
           <AddTodo />
         </Suspense>
+        <Modal />
         {todos.length ? (
           <TodoList todos={todos} />
         ) : loading ? (

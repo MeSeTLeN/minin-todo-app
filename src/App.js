@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TodoList from './Todo/TodoList'
+import MyContext from './context'
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -10,10 +11,23 @@ function App() {
       .then((todos) => setTodos(todos))
   }, [])
 
+  function onToggle(id) {
+    setTodos(
+      todos.map((el) => {
+        if (el.id === id) {
+          el.completed = !el.completed
+        }
+        return el
+      })
+    )
+  }
+
   return (
-    <div className='App'>
-      <TodoList todos={todos} />
-    </div>
+    <MyContext.Provider value={{ onToggle }}>
+      <div className='App'>
+        <TodoList todos={todos} />
+      </div>
+    </MyContext.Provider>
   )
 }
 

@@ -1,23 +1,38 @@
 import React, { useContext, useState } from 'react'
 import MyContext from '../context'
 
-export default function AddTodo() {
-  const { addTodo } = useContext(MyContext)
+function useInputValue() {
   const [value, setValue] = useState('')
+
+  return {
+    bind: {
+      value,
+      onChange: (event) => setValue(event.target.value),
+    },
+    value,
+    clear: () => setValue(''),
+  }
+}
+
+function AddTodo() {
+  const { addTodo } = useContext(MyContext)
+  const input = useInputValue()
 
   function submitHandler(event) {
     event.preventDefault()
 
-    if (value.trim()) {
-      addTodo(value)
-      setValue('')
+    if (input.value.trim()) {
+      addTodo(input.value)
+      input.clear()
     }
   }
 
   return (
     <form onSubmit={submitHandler}>
-      <input value={value} onChange={(event) => setValue(event.target.value)} />
+      <input {...input.bind} />
       <button type='submit'>Add Todo</button>
     </form>
   )
 }
+
+export default AddTodo
